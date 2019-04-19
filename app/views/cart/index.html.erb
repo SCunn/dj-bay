@@ -1,0 +1,44 @@
+
+<% if @cart.empty? %>
+
+    <p>Please at least buy one item from me</p>
+
+<% end %>
+    
+    <div id="itemsContainer">
+    
+    <table id="customers">
+        <!--Set Cart Value to 0-->
+        <% total = 0 %>
+        
+        <% @cart.each do |id, quantity| %>
+        <% item = Item.find_by_id(id) %>
+            
+            <tr>
+                <td class="image">
+                <%= link_to (image_tag item.image_url, :class =>"itemholsIm"), item %>
+                </td>
+                <td class="quantity"><%= item.artist %></td>
+                
+                <td class="quantity"><%= item.album %></td>
+          
+                <td class="quantity"> <%= item.genre %></td> 
+                <td class="quantity"> <%= item.condition %></td>
+                <td class="quantity"><%= quantity %></td>
+                <td class="price"><%= number_to_currency(item.price, :unit => "€") %></td>
+                <td class="quantity"><a href="/cart/decrease/<%= item.id %>" class="button">Decrease</a></td>
+                <td class="quantity"><a href="/cart/remove/<%= item.id %>" class="button">Remove</a></td>
+                <td class="price"><%= number_to_currency(quantity * item.price, :unit =>"€")%></td>
+            </tr>    
+              <!--Add up the total sum number of Items-->
+              <% total += quantity * item.price %>
+            <% end %>
+            
+            <tr>Grand total: <%= number_to_currency(total, :unit => "€")  %></tr>
+            
+        </table>
+        
+            <a href="/cart/clear" class="button">Clear Cart</a>
+            <a href="/items" class="button">Continue Shopping</a>
+            <a href="/checkout" class="button">Checkout</a>
+    </div>

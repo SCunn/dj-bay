@@ -1,0 +1,11 @@
+<%= form_tag("/search", :method =>"post") do %>
+<!--<%= label_tag(:searchbox, "Search For What...") %>-->
+<div>
+<div style="width:70%; float:left;">
+<%= text_field_tag(:searchbox) %>
+</div>
+<div style="width:30%; float:right;">
+<%= submit_tag("search", :class => "btn btn-primary") %>
+</div>
+</div>
+<% end %>

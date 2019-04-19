@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Artist:</strong>
+  <%= @djcat.artist %>
+</p>
+
+<p>
+  <strong>Album:</strong>
+  <%= @djcat.album %>
+</p>
+
+<p>
+  <strong>Genre:</strong>
+  <%= @djcat.genre %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @djcat.description %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= @djcat.image %>
+</p>
+
+<%= link_to 'Edit', edit_djcat_path(@djcat) %> |
+<%= link_to 'Back', djcats_path %>

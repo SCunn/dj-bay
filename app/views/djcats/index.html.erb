@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Djcats</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Artist</th>
+      <th>Album</th>
+      <th>Genre</th>
+      <th>Description</th>
+      <th>Image</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @djcats.each do |djcat| %>
+      <tr>
+        <td><%= djcat.artist %></td>
+        <td><%= djcat.album %></td>
+        <td><%= djcat.genre %></td>
+        <td><%= djcat.description %></td>
+        <td><%= djcat.image %></td>
+        <td><%= link_to 'Show', djcat %></td>
+        <td><%= link_to 'Edit', edit_djcat_path(djcat) %></td>
+        <td><%= link_to 'Destroy', djcat, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Djcat', new_djcat_path %>

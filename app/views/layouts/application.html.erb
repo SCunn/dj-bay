@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= yield(:title) %> | DJBAY</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    
+    <!-- Custom styles for this template -->
+  <link href="https://blackrockdigital.github.io/startbootstrap-modern-business/css/modern-business.css" rel="stylesheet">
+  
+  </head>
+
+  <body>
+      <!-- Navigation -->
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+
+      <%= link_to "DJBAY", "/", :class => "navbar-brand" %>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <%= link_to "Home", "/", :class => "nav-link"  %>
+          </li>
+           <li class="nav-item">
+            <%= link_to "Products", "/items", :class => "nav-link"  %>
+          </li>
+           <li class="nav-item">
+            <%= link_to "View Cart", "/cart", :class => "nav-link"  %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "View Orders", "/orders", :class => "nav-link"  %>
+          </li>
+          
+          
+          <!--#################Login Section######################-->
+          
+          
+          
+          
+          
+          
+          <% if user_signed_in? %>
+            <li><%= link_to 'Profile', edit_user_registration_path, :class => "nav-link" %></li>
+            <li><%= link_to 'Sign Out', destroy_user_session_path, :class => "nav-link", :method => :delete %></li>
+          <% else %>
+          
+            <li><%= link_to 'Register', new_user_registration_path, :class => "nav-link" %></li>
+            <li><%= link_to 'Sign In', new_user_session_path, :class => "nav-link" %></li>
+            
+          <% end %>
+          
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              More
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
+              <a><%= link_to "About", about_path, :class => "dropdown-item"  %></a>
+              
+              <a> <% if session[:login] == 1 %>
+                <a>
+                <%= link_to "Admin Log Out", logout_path, :class => "dropdown-item"  %>
+                </a>
+              <% else %>
+              <a>
+                <%= link_to "Admin Log In", login_path, :class => "dropdown-item"  %>
+              </a>
+              <% end %></a>
+              <a><%= link_to "Help", help_path, :class => "dropdown-item"  %></a>
+              
+            </div>
+          </li>
+          
+          
+        </ul>
+      </div>
+    </div>
+     <div class="searchBarCont">
+      <%= render 'layouts/search' %>
+    </div>
+  </nav>
+  
+  <% if user_signed_in? %>
+    <h2 style="margin:4%">Hi <%= current_user.email %></h2>
+  <% end %>
+  
+  
+  <%= yield %>
+  
+   <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+  
+    
+  </body>
+</html>
